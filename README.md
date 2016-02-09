@@ -1,12 +1,12 @@
-## Installation
+# Installation
 
 Install package with NPM and add it to your development dependencies:
 
 `npm install --save-dev gulp-filenamelist`
 
-## Usage
+# Usage
 
-### Default behaviour
+## Default behaviour
 
 By default this plugin creates a file called `filenamelist.txt`, containing a
 comma separated list of the supplied files including their extension.
@@ -35,7 +35,7 @@ A file called `filenamelist.txt` would be output containing:
 a.txt,b.txt
 ```
 
-### Sass file
+## Sass file example
 
 To create a list that we can import in Sass, we could use these options:
 
@@ -74,7 +74,7 @@ $icons: (
 );
 ```
 
-## LICENSE
+# LICENSE
 
 (MIT License)
 
