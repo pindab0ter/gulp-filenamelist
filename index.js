@@ -8,8 +8,10 @@ module.exports = function(options) {
     var list = [];
 
     options = options || {};
-    options.fileName = options.fileName || 'filenamelist.txt';
+    options.outputFileName = options.outputFileName || 'filenamelist.csv';
     options.separator = options.separator || ',';
+    options.prepend = options.prepend || '';
+    options.append = options.append || '';
 
     //noinspection JSUnusedLocalSymbols
     function addToList(file, encoding, callback) {
@@ -28,7 +30,7 @@ module.exports = function(options) {
         var file = new File({
             cwd: __dirname,
             base: __dirname,
-            path: path.join(__dirname, options.fileName),
+            path: path.join(__dirname, options.outputFileName),
             contents: new Buffer(contents)
         });
 

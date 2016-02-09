@@ -50,7 +50,7 @@ context('with options specified', function() {
     it('should use the supplied file name', function(done) {
         var stream = gulp.src(source)
             .pipe(filenamelist({
-                fileName: customFileName
+                outputFileName: customFileName
             }))
             .pipe(gulp.dest(destination));
 

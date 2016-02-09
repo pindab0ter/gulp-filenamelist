@@ -1,8 +1,8 @@
 # Installation
 
-Install package with NPM and add it to your development dependencies:
+Install package with NPM and add it to your dependencies:
 
-`npm install --save-dev gulp-filenamelist`
+`npm install --save gulp-filenamelist`
 
 # Usage
 
@@ -37,16 +37,17 @@ a.txt,b.txt
 
 ## Sass file example
 
-To create a list that we can import in Sass, we could use these options:
+To create a file that that could be used as a list of variables that could then
+be imported in a Sass file:
 
 ```js
 var filenamelist = require('gulp-filenamelist');
 
 var opts = {
-    fileName: 'iconnames.scss',
+    outputFileName: 'iconnames.scss',
     stripExt: true,
-    firstLine: '$icons: (\n\t',
-    lastLine: ');',
+    prepend: '$icons: (\n\t',
+    append: ');',
     separator: ',\n\t'
 }
 
@@ -74,7 +75,53 @@ $icons: (
 );
 ```
 
-# LICENSE
+# Options
+
+Options are supplied by passing an options object as shown in the 'Sass file'
+example above.
+
+## outputFileName
+
+Use the specified file name for the output file.
+
+Type: `string`
+Default: `filenamelist.csv`
+
+## stripExt
+
+**NOT YET IMPLEMENTED**
+
+Strip the extension of each file's name.
+
+Type: `boolean`
+Default: `false`
+
+## prepend
+
+**NOT YET IMPLEMENTED**
+
+Add this string before the list of names.
+
+Type: `string`
+default: `''`
+
+## append
+
+**NOT YET IMPLEMENTED**
+
+Type: `string`
+default: `''`
+
+Add this string at the end of the list of names.
+
+## separator
+
+Type: `string`
+default: `','`
+
+Add this string to the end of each file name except the last.
+
+# License
 
 (MIT License)
 
