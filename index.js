@@ -5,30 +5,36 @@ var through = require('through2'),
     File = require('gulp-util').File;
 
 module.exports = function(options) {
-    var nameList = [];
+    var list = [];
 
     options = options || {};
     options.fileName = options.fileName || 'filenamelist.txt';
+    options.separator = options.separator || ',';
 
     //noinspection JSUnusedLocalSymbols
-    function addFileToNameList(file, encoding, callback) {
-        var name = file.path.replace(file.base, '');
+    function addToList(file, encoding, callback) {
+        // TODO: Show `PluginError` if file is a stream
 
-        nameList.push(name);
+        file = new File(file);
+
+        list.push(file.basename);
+
         callback();
     }
 
-    function createNameFile(callback) {
-        var nameFile = new File({
+    function writeFile(callback) {
+        var contents = list.join(options.separator);
+
+        var file = new File({
             cwd: __dirname,
             base: __dirname,
             path: path.join(__dirname, options.fileName),
-            contents: new Buffer(nameList.toString())
+            contents: new Buffer(contents)
         });
 
-        this.push(nameFile);
+        this.push(file);
         callback();
     }
 
-    return through.obj(addFileToNameList, createNameFile);
+    return through.obj(addToList, writeFile);
 };

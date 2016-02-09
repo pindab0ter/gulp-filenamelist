@@ -7,7 +7,8 @@ var source = [path.join('source', '*')],
     destination = path.join(__dirname, 'destination'),
     defaultFileName = 'filenamelist.txt',
     defaultFileContents = new Buffer('a.txt,b.txt'),
-    customFileName = 'custom.txt';
+    customFileName = 'custom.txt',
+    customFileContents = new Buffer('a.txt,\n\tb.txt');
 
     var defaultFile = new File({
         path: path.join(destination, defaultFileName),
@@ -15,7 +16,8 @@ var source = [path.join('source', '*')],
     });
 
     var customFile = new File({
-        path: path.join(destination, customFileName)
+        path: path.join(destination, customFileName),
+        contents: customFileContents
     });
 
 module.exports = {

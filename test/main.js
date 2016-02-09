@@ -7,8 +7,9 @@ var filenamelist = require('../'),
     after = require('mocha').after,
     gulp = require('gulp'),
     fs = require('fs'),
-    utils = require('./utils.js'),
-    source = utils.source,
+    utils = require('./utils.js');
+
+var source = utils.source,
     destination = utils.destination,
     defaultFile = utils.defaultFile,
     customFile = utils.customFile,
@@ -45,8 +46,8 @@ context('without any options specified', function() {
     });
 });
 
-context('with a supplied file name', function() {
-    it('should use that file name', function(done) {
+context('with options specified', function() {
+    it('should use the supplied file name', function(done) {
         var stream = gulp.src(source)
             .pipe(filenamelist({
                 fileName: customFileName
@@ -55,6 +56,19 @@ context('with a supplied file name', function() {
 
         stream.on('data', function(file) {
             assert.deepEqual(customFile.path, file.path);
+            done();
+        });
+    });
+
+    it('should use the supplied separator', function(done) {
+        var stream = gulp.src(source)
+            .pipe(filenamelist({
+                separator: ',\n\t'
+            }))
+            .pipe(gulp.dest(destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(customFile.contents, file.contents);
             done();
         });
     })
