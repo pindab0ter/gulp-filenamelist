@@ -1,12 +1,20 @@
 'use strict';
 
-var assert = require('assert'),
+var filenamelist = require('../'),
+    assert = require('assert'),
     context = require('mocha').describe,
     it = require('mocha').it,
+    after = require('mocha').after,
     gulp = require('gulp'),
-    filenamelist = require('../'),
-    source = ['source/*'],
-    destination = 'destination/';
+    fs = require('fs'),
+    utils = require('./utils.js'),
+    source = utils.source,
+    destination = utils.destination,
+    defaultFile = utils.defaultFile;
+
+after(function() {
+    fs.unlinkSync(utils.defaultFile.path);
+});
 
 context('without any options specified', function() {
 
@@ -15,8 +23,9 @@ context('without any options specified', function() {
             .pipe(filenamelist())
             .pipe(gulp.dest(destination));
 
-        stream.on('end', function() {
-            // TODO: Verify contents
+        stream.on('data', function(file) {
+            assert.deepEqual(defaultFile.path, file.path);
+            assert.deepEqual(defaultFile.contents, file.contents);
             done();
         });
 

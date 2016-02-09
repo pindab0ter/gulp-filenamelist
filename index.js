@@ -1,7 +1,8 @@
+'use strict';
+
 var through = require('through2'),
-    gutil = require('gulp-util'),
     path = require('path'),
-    File = gutil.File;
+    File = require('gulp-util').File;
 
 module.exports = function() {
     var nameList = [],
