@@ -12,11 +12,11 @@ module.exports = function(options) {
     options.separator = options.separator || ',';
     options.prepend = options.prepend || '';
     options.append = options.append || '';
+    options.quote = options.quote || false;
 
     //noinspection JSUnusedLocalSymbols
     function addToList(file, encoding, callback) {
         // TODO: Show `PluginError` if file is a stream
-
         file = new File(file);
 
         list.push(file.basename);
@@ -25,6 +25,12 @@ module.exports = function(options) {
     }
 
     function writeFile(callback) {
+        if (options.quote) {
+            list = list.map(function(item) {
+                return '"' + item + '"';
+            })
+        }
+
         var contents = list.join(options.separator);
 
         contents = options.prepend + contents + options.append;

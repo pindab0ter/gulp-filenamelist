@@ -1,26 +1,23 @@
+/* global describe it afterEach */
 'use strict';
 
 var filenamelist = require('../'),
     assert = require('assert'),
-    context = require('mocha').describe,
-    it = require('mocha').it,
-    after = require('mocha').after,
     gulp = require('gulp'),
     fs = require('fs'),
     utils = require('./utils.js');
 
 function unlinkFileIfExists(filePath) {
     fs.stat(filePath, function(err, stats) {
-        if (!err || !stats.isFile()) {
+        if (!err && stats.isFile()) {
             fs.unlinkSync(filePath);
         }
     })
 }
 
-after(function() {
+afterEach(function() {
     [
         utils.defaultFile.path,
-        utils.separatorFile.path,
         utils.fileNameFile.path
     ].forEach(function(filePath) {
         unlinkFileIfExists(filePath);
@@ -77,6 +74,19 @@ context('with options specified', function() {
 
         stream.on('data', function(file) {
             assert.deepEqual(utils.prependContents, file.contents);
+            done();
+        });
+    });
+
+    it('should surround the names with quotes', function(done) {
+        var stream = gulp.src(utils.source)
+            .pipe(filenamelist({
+                quote: true
+            }))
+            .pipe(gulp.dest(utils.destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(utils.quoteContents, file.contents);
             done();
         });
     });

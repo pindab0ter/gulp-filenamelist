@@ -117,6 +117,13 @@ default: `','`
 
 Add this string to the end of each file name except the last.
 
+## quote
+
+Type: `boolean`
+default: `false`
+
+Surround each file name with quotes.
+
 # License
 
 (MIT License)
