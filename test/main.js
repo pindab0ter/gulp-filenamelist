@@ -10,14 +10,28 @@ var filenamelist = require('../'),
     utils = require('./utils.js'),
     source = utils.source,
     destination = utils.destination,
-    defaultFile = utils.defaultFile;
+    defaultFile = utils.defaultFile,
+    customFile = utils.customFile,
+    customFileName = utils.customFileName;
+
+function unlinkFileIfExists(filePath) {
+    fs.stat(filePath, function(err, stats) {
+        if (!err || !stats.isFile()) {
+            fs.unlinkSync(filePath);
+        }
+    })
+}
 
 after(function() {
-    fs.unlinkSync(utils.defaultFile.path);
+    [
+        utils.defaultFile.path,
+        utils.customFile.path
+    ].forEach(function(filePath) {
+        unlinkFileIfExists(filePath);
+    })
 });
 
 context('without any options specified', function() {
-
     it('should show the default behaviour', function(done) {
         var stream = gulp.src(source)
             .pipe(filenamelist())
@@ -28,7 +42,20 @@ context('without any options specified', function() {
             assert.deepEqual(defaultFile.contents, file.contents);
             done();
         });
-
     });
+});
 
+context('with a supplied file name', function() {
+    it('should use that file name', function(done) {
+        var stream = gulp.src(source)
+            .pipe(filenamelist({
+                fileName: customFileName
+            }))
+            .pipe(gulp.dest(destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(customFile.path, file.path);
+            done();
+        });
+    })
 });

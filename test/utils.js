@@ -5,15 +5,23 @@ var path = require('path'),
 
 var source = [path.join('source', '*')],
     destination = path.join(__dirname, 'destination'),
-    defaultFileName = path.join(destination, 'filenamelist.txt'),
+    defaultFileName = 'filenamelist.txt',
     defaultFileContents = new Buffer('a.txt,b.txt'),
-    defaultFile = new File({
-        path: defaultFileName,
+    customFileName = 'custom.txt';
+
+    var defaultFile = new File({
+        path: path.join(destination, defaultFileName),
         contents: defaultFileContents
+    });
+
+    var customFile = new File({
+        path: path.join(destination, customFileName)
     });
 
 module.exports = {
     source: source,
     destination: destination,
-    defaultFile: defaultFile
+    defaultFile: defaultFile,
+    customFile: customFile,
+    customFileName: customFileName
 };
