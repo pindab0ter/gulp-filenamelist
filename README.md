@@ -98,16 +98,12 @@ Default: `false`
 
 ## prepend
 
-**NOT YET IMPLEMENTED**
-
 Add this string before the list of names.
 
 Type: `string`
 default: `''`
 
 ## append
-
-**NOT YET IMPLEMENTED**
 
 Type: `string`
 default: `''`

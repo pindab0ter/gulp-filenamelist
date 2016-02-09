@@ -35,7 +35,7 @@ context('without any options specified', function() {
 
         stream.on('data', function(file) {
             assert.deepEqual(utils.defaultFile.path, file.path);
-            assert.deepEqual(utils.defaultFile.contents, file.contents);
+            assert.deepEqual(utils.defaultContents, file.contents);
             done();
         });
     });
@@ -63,8 +63,21 @@ context('with options specified', function() {
             .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.separatorFile.contents, file.contents);
+            assert.deepEqual(utils.separatorContents, file.contents);
             done();
         });
-    })
+    });
+
+    it('should add the prepend string', function(done) {
+        var stream = gulp.src(utils.source)
+            .pipe(filenamelist({
+                prepend: 'var a = ['
+            }))
+            .pipe(gulp.dest(utils.destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(utils.prependContents, file.contents);
+            done();
+        });
+    });
 });

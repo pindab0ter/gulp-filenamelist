@@ -27,7 +27,7 @@ module.exports = function(options) {
     function writeFile(callback) {
         var contents = list.join(options.separator);
 
-        console.log(__dirname, options.outputFileName);
+        contents = options.prepend + contents + options.append;
 
         var file = new File({
             cwd: __dirname,
