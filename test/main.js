@@ -9,12 +9,6 @@ var filenamelist = require('../'),
     fs = require('fs'),
     utils = require('./utils.js');
 
-var source = utils.source,
-    destination = utils.destination,
-    defaultFile = utils.defaultFile,
-    customFile = utils.customFile,
-    customFileName = utils.customFileName;
-
 function unlinkFileIfExists(filePath) {
     fs.stat(filePath, function(err, stats) {
         if (!err || !stats.isFile()) {
@@ -26,7 +20,8 @@ function unlinkFileIfExists(filePath) {
 after(function() {
     [
         utils.defaultFile.path,
-        utils.customFile.path
+        utils.separatorFile.path,
+        utils.fileNameFile.path
     ].forEach(function(filePath) {
         unlinkFileIfExists(filePath);
     })
@@ -34,13 +29,13 @@ after(function() {
 
 context('without any options specified', function() {
     it('should show the default behaviour', function(done) {
-        var stream = gulp.src(source)
+        var stream = gulp.src(utils.source)
             .pipe(filenamelist())
-            .pipe(gulp.dest(destination));
+            .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(defaultFile.path, file.path);
-            assert.deepEqual(defaultFile.contents, file.contents);
+            assert.deepEqual(utils.defaultFile.path, file.path);
+            assert.deepEqual(utils.defaultFile.contents, file.contents);
             done();
         });
     });
@@ -48,27 +43,27 @@ context('without any options specified', function() {
 
 context('with options specified', function() {
     it('should use the supplied file name', function(done) {
-        var stream = gulp.src(source)
+        var stream = gulp.src(utils.source)
             .pipe(filenamelist({
-                outputFileName: customFileName
+                outputFileName: utils.customFileName
             }))
-            .pipe(gulp.dest(destination));
+            .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(customFile.path, file.path);
+            assert.deepEqual(utils.fileNameFile.path, file.path);
             done();
         });
     });
 
     it('should use the supplied separator', function(done) {
-        var stream = gulp.src(source)
+        var stream = gulp.src(utils.source)
             .pipe(filenamelist({
                 separator: ',\n\t'
             }))
-            .pipe(gulp.dest(destination));
+            .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(customFile.contents, file.contents);
+            assert.deepEqual(utils.separatorFile.contents, file.contents);
             done();
         });
     })

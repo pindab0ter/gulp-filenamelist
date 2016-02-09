@@ -5,25 +5,30 @@ var path = require('path'),
 
 var source = [path.join('source', '*')],
     destination = path.join(__dirname, 'destination'),
-    defaultFileName = 'filenamelist.txt',
+    defaultFileName = 'filenamelist.csv',
     defaultFileContents = new Buffer('a.txt,b.txt'),
     customFileName = 'custom.txt',
-    customFileContents = new Buffer('a.txt,\n\tb.txt');
+    separatorContents = new Buffer('a.txt,\n\tb.txt');
 
     var defaultFile = new File({
         path: path.join(destination, defaultFileName),
         contents: defaultFileContents
     });
 
-    var customFile = new File({
-        path: path.join(destination, customFileName),
-        contents: customFileContents
+    var fileNameFile = new File({
+        path: path.join(destination, customFileName)
+    });
+
+    var separatorFile = new File({
+        path: path.join(destination, defaultFileName),
+        contents: separatorContents
     });
 
 module.exports = {
     source: source,
     destination: destination,
+    customFileName: customFileName,
     defaultFile: defaultFile,
-    customFile: customFile,
-    customFileName: customFileName
+    fileNameFile: fileNameFile,
+    separatorFile: separatorFile
 };
