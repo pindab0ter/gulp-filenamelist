@@ -3,25 +3,25 @@
 var path = require('path'),
     File = require('gulp-util').File;
 
-var utils = {
-    source: [path.join('source', '*')],
-    destination: path.join(__dirname, 'destination'),
-    defaultFileName: 'filenamelist.csv',
-    customFileName: 'custom.txt',
-    defaultPath: path.join(utils.destination, utils.defaultFileName),
-    defaultContents: new Buffer('a.txt,b.txt'),
-    separatorContents: new Buffer('a.txt,\n\tb.txt'),
-    prependContents: new Buffer('var a = [a.txt,b.txt'),
-    appendContents: new Buffer('a.txt,b.txt];'),
-    quoteSingleContents: new Buffer("'a.txt','b.txt'"),
-    quoteDoubleContents: new Buffer('"a.txt","b.txt"'),
-    defaultFile: new File({
-        path: utils.defaultPath,
-        contents: utils.defaultContents
-    }),
-    filenameFile: new File({
-        path: path.join(utils.destination, utils.customFileName)
-    })
-};
+var utils = {};
+
+utils.source = [path.join('source', '*')];
+utils.destination = path.join(__dirname, 'destination');
+utils.defaultFileName = 'filenamelist.csv';
+utils.customFileName = 'custom.txt';
+utils.defaultContents = new Buffer('a.txt,b.txt');
+utils.separatorContents = new Buffer('a.txt,\n\tb.txt');
+utils.prependContents = new Buffer('var a = [a.txt,b.txt');
+utils.appendContents = new Buffer('a.txt,b.txt];');
+utils.quoteSingleContents = new Buffer("'a.txt','b.txt'");
+utils.quoteDoubleContents = new Buffer('"a.txt","b.txt"');
+utils.defaultPath = path.join(utils.destination, utils.defaultFileName);
+utils.defaultFile = new File({
+    path: utils.defaultPath,
+    contents: utils.defaultContents
+});
+utils.filenameFile = new File({
+    path: path.join(utils.destination, utils.customFileName)
+});
 
 module.exports = utils;

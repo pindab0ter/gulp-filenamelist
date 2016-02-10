@@ -1,6 +1,6 @@
 {
   "name": "gulp-filenamelist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Creates a file containing a list of filenames",
   "homepage": "https://github.com/pindab0ter/gulp-filenamelist#readme",
   "author": "Hans van Luttikhuizen <hansvanluttikhuizen@me.com>",
