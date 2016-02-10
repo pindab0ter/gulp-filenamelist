@@ -54,7 +54,7 @@ var opts = {
     prepend: '$icons: (\n\t',
     separator: ',\n\t',
     append: '\n);',
-    quote: true
+    quoteSingle: true
 }
 
 gulp.task('scripts', function() {
@@ -77,8 +77,8 @@ A file called `iconnames.scss` will be generated, containing:
 
 ```
 $icons: (
-    mail,
-    phone
+    'mail',
+    'phone'
 );
 ```
 
@@ -115,12 +115,19 @@ default: `','`
 
 Add this string to the end of each filename except the last.
 
-## quote
+## quotesSingle
 
 Type: `boolean`
 default: `false`
 
-Surround each filename with quotes.
+Surround each filename with single quotes: `'`
+
+## quotesDouble
+
+Type: `boolean`
+default: `false`
+
+Surround each filename with double quotes: `"`
 
 # License
 

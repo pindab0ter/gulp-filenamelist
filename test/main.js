@@ -1,4 +1,3 @@
-/* global describe it afterEach */
 'use strict';
 
 var filenamelist = require('../'),
@@ -78,16 +77,48 @@ context('with options specified', function() {
         });
     });
 
-    it('should surround the names with quotes', function(done) {
+    it('should surround the names with single quotes', function(done) {
         var stream = gulp.src(utils.source)
             .pipe(filenamelist({
-                quote: true
+                quotesSingle: true
             }))
             .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.quoteContents, file.contents);
+            assert.deepEqual(utils.quoteSingleContents, file.contents);
             done();
         });
     });
+
+    it('should surround the names with double quotes', function(done) {
+        var stream = gulp.src(utils.source)
+            .pipe(filenamelist({
+                quotesDouble: true
+            }))
+            .pipe(gulp.dest(utils.destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(utils.quoteDoubleContents, file.contents);
+            done();
+        });
+    });
+
+    it('should not accept both single and double quotes', function(done) {
+        assert.throws(function() {
+                gulp.src(utils.source)
+                    .pipe(filenamelist({
+                        quotesSingle: true,
+                        quotesDouble: true
+                    }))
+                    .pipe(gulp.dest(utils.destination))
+                    .on('close', done);
+            }, function(err) {
+                if (err.message !== 'Cannot have both single and double quotes.') {
+                    assert.fail();
+                }
+                done();
+            },
+            'Expected error: "Cannot have both single and double quotes."'
+        );
+    })
 });

@@ -14,7 +14,8 @@ var source = [path.join('source', '*')],
     separatorContents = new Buffer('a.txt,\n\tb.txt'),
     prependContents = new Buffer('var a = [a.txt,b.txt'),
     appendContents = new Buffer('a.txt,b.txt];'),
-    quoteContents = new Buffer('"a.txt","b.txt"');
+    quoteSingleContents = new Buffer("'a.txt','b.txt'"),
+    quoteDoubleContents = new Buffer('"a.txt","b.txt"');
 
     var defaultFile = new File({
         path: defaultPath,
@@ -33,7 +34,8 @@ module.exports = {
     separatorContents: separatorContents,
     prependContents: prependContents,
     appendContents: appendContents,
-    quoteContents: quoteContents,
+    quoteSingleContents: quoteSingleContents,
+    quoteDoubleContents: quoteDoubleContents,
     defaultFile: defaultFile,
     filenameFile: filenameFile
 };
