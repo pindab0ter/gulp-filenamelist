@@ -2,29 +2,29 @@
   "name": "gulp-filenamelist",
   "version": "0.2.0",
   "description": "Creates a file containing a list of filenames",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
+  "homepage": "https://github.com/pindab0ter/gulp-filenamelist#readme",
+  "author": "Hans van Luttikhuizen <hansvanluttikhuizen@me.com>",
+  "license": "MIT",
+  "keywords": [
+    "gulpplugin"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pindab0ter/gulp-filenamelist.git"
   },
-  "keywords": [
-    "gulpplugin"
-  ],
-  "dependencies": {
-    "gulp-util": "^3.0.7",
-    "through2": "^2.0.1"
-  },
-  "author": "Hans van Luttikhuizen <hansvanluttikhuizen@me.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pindab0ter/gulp-filenamelist/issues"
   },
-  "homepage": "https://github.com/pindab0ter/gulp-filenamelist#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "engines": {
     "node": ">= 0.10"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
