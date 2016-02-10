@@ -18,7 +18,7 @@ function unlinkFileIfExists(filePath) {
 afterEach(function() {
     [
         utils.defaultFile.path,
-        utils.fileNameFile.path
+        utils.filenameFile.path
     ].forEach(function(filePath) {
         unlinkFileIfExists(filePath);
     })
@@ -47,7 +47,7 @@ context('with options specified', function() {
             .pipe(gulp.dest(utils.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.fileNameFile.path, file.path);
+            assert.deepEqual(utils.filenameFile.path, file.path);
             done();
         });
     });

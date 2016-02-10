@@ -35,6 +35,12 @@ A file called `filenamelist.txt` would be output containing:
 a.txt,b.txt
 ```
 
+## Common usage scenario:  [gulp-ext](https://www.npmjs.com/package/gulp-ext)
+
+Use [gulp-ext](https://www.npmjs.com/package/gulp-ext) to remove filename
+extensions before adding them to the list. This is an example where gulp-ext
+has been used in the Gulp pipeline.
+
 ## Sass file example
 
 To create a file that that could be used as a list of variables that could then
@@ -44,15 +50,16 @@ be imported in a Sass file:
 var filenamelist = require('gulp-filenamelist');
 
 var opts = {
-    outputFileName: 'iconnames.scss',
-    stripExt: true,
+    outputFileName: '_iconnames.scss',
     prepend: '$icons: (\n\t',
-    append: ');',
-    separator: ',\n\t'
+    separator: ',\n\t',
+    append: '\n);',
+    quote: true
 }
 
 gulp.task('scripts', function() {
   return gulp.src('./icons/*.svg')
+    .pipe(ext.)
     .pipe(filenamelist(opts))
     .pipe(gulp.dest('./dist/'));
 });
@@ -82,19 +89,10 @@ example above.
 
 ## outputFileName
 
-Use the specified file name for the output file.
+Use the specified filename for the output file.
 
 Type: `string`
 Default: `filenamelist.csv`
-
-## stripExt
-
-**NOT YET IMPLEMENTED**
-
-Strip the extension of each file's name.
-
-Type: `boolean`
-Default: `false`
 
 ## prepend
 
@@ -115,14 +113,14 @@ Add this string at the end of the list of names.
 Type: `string`
 default: `','`
 
-Add this string to the end of each file name except the last.
+Add this string to the end of each filename except the last.
 
 ## quote
 
 Type: `boolean`
 default: `false`
 
-Surround each file name with quotes.
+Surround each filename with quotes.
 
 # License
 

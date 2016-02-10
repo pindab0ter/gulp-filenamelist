@@ -21,7 +21,7 @@ var source = [path.join('source', '*')],
         contents: defaultContents
     });
 
-    var fileNameFile = new File({
+    var filenameFile = new File({
         path: path.join(destination, customFileName)
     });
 
@@ -35,5 +35,5 @@ module.exports = {
     appendContents: appendContents,
     quoteContents: quoteContents,
     defaultFile: defaultFile,
-    fileNameFile: fileNameFile
+    filenameFile: filenameFile
 };
