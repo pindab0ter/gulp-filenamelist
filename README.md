@@ -12,10 +12,11 @@ By default this plugin creates a file called `filenamelist.txt`, containing a
 comma separated list of the supplied files including their extension.
 
 ```js
-var filenamelist = require('gulp-filenamelist');
+var gulp = require('gulp'),
+    filenamelist = require('gulp-filenamelist');
 
-gulp.task('scripts', function() {
-  return gulp.src('./icons/*.svg')
+gulp.task('iconlist', function() {
+  return gulp.src('./files/*.txt')
     .pipe(filenamelist())
     .pipe(gulp.dest('./dist/'));
 });
@@ -47,20 +48,22 @@ To create a file that that could be used as a list of variables that could then
 be imported in a Sass file:
 
 ```js
-var filenamelist = require('gulp-filenamelist');
+var gulp = require('gulp')
+    ext = require('gulp-ext'),
+    filenamelist = require('gulp-filenamelist');
 
-var opts = {
-    outputFileName: '_iconnames.scss',
+var options = {
+    outputFileName: '_iconlist.scss',
     prepend: '$icons: (\n\t',
     separator: ',\n\t',
     append: '\n);',
     quoteSingle: true
 }
 
-gulp.task('scripts', function() {
-  return gulp.src('./icons/*.svg')
-    .pipe(ext.)
-    .pipe(filenamelist(opts))
+gulp.task('iconlist', function() {
+  return gulp.src('./icons/**/*.svg')
+    .pipe(ext.crop())
+    .pipe(filenamelist(options))
     .pipe(gulp.dest('./dist/'));
 });
 ```
@@ -68,12 +71,12 @@ gulp.task('scripts', function() {
 Assuming these files are passed in:
 
 ```
-files
+icons
 ├── mail.svg
 └── phone.svg
 ```
 
-A file called `iconnames.scss` will be generated, containing:
+A file called `_iconlist.scss` will be generated, containing:
 
 ```
 $icons: (
