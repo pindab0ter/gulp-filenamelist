@@ -4,7 +4,7 @@ var filenamelist = require('../'),
     assert = require('assert'),
     gulp = require('gulp'),
     fs = require('fs'),
-    utils = require('./utils.js');
+    utils = require('./variables.js');
 
 function unlinkFileIfExists(filePath) {
     fs.stat(filePath, function(err, stats) {
@@ -104,21 +104,19 @@ context('with options specified', function() {
     });
 
     it('should not accept both single and double quotes', function(done) {
-        assert.throws(function() {
-                gulp.src(utils.source)
-                    .pipe(filenamelist({
-                        quotesSingle: true,
-                        quotesDouble: true
-                    }))
-                    .pipe(gulp.dest(utils.destination))
-                    .on('close', done);
-            }, function(err) {
-                if (err.message !== 'Cannot have both single and double quotes.') {
-                    assert.fail();
-                }
-                done();
-            },
-            'Expected error: "Cannot have both single and double quotes."'
-        );
+        try {
+            gulp.src(utils.source)
+                .pipe(filenamelist({
+                    quotesSingle: true,
+                    quotesDouble: true
+                }))
+                .pipe(gulp.dest(utils.destination));
+            done(new Error('Did not catch any errors.'));
+        } catch (err) {
+            if (err.message !== 'Cannot have both single and double quotes.') {
+                done(new Error('Expected a PluginError, got this instead:\n' + err));
+            }
+            done();
+        }
     })
 });
