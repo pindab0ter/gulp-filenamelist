@@ -10,8 +10,6 @@ module.exports = {
         options.separator = options.separator || ',';
         options.prepend = options.prepend || '';
         options.append = options.append || '';
-        options.quotesSingle = options.quotesSingle || false;
-        options.quotesDouble = options.quotesDouble || false;
 
         if (options.quotesSingle && options.quotesDouble) {
             throw new PluginError(
