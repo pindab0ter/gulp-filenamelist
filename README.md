@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pindab0ter/gulp-filenamelist.svg?branch=master)](https://travis-ci.org/pindab0ter/gulp-filenamelist) [![Code Climate](https://codeclimate.com/github/pindab0ter/gulp-filenamelist/badges/gpa.svg)](https://codeclimate.com/github/pindab0ter/gulp-filenamelist) [![Issue Count](https://codeclimate.com/github/pindab0ter/gulp-filenamelist/badges/issue_count.svg)](https://codeclimate.com/github/pindab0ter/gulp-filenamelist) [![Code Climate](https://codeclimate.com/github/pindab0ter/gulp-filenamelist/badges/gpa.svg)](https://codeclimate.com/github/pindab0ter/gulp-filenamelist)
+
 # Installation
 
 Install package with NPM and add it to your dependencies:

@@ -15,9 +15,10 @@
   "bugs": {
     "url": "https://github.com/pindab0ter/gulp-filenamelist/issues"
   },
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "mocha"
+    "coverage": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
+    "test": "node ./node_modules/.bin/mocha"
   },
   "engines": {
     "node": ">= 0.10"
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "istanbul": "^0.4.2",
     "mocha": "^2.4.5"
   }
 }
