@@ -4,7 +4,8 @@ var filenamelist = require('../'),
     assert = require('assert'),
     gulp = require('gulp'),
     fs = require('fs'),
-    utils = require('./variables.js');
+    vars = require('./variables.js'),
+    utils = require('../utils.js');
 
 function unlinkFileIfExists(filePath) {
     fs.stat(filePath, function(err, stats) {
@@ -16,8 +17,8 @@ function unlinkFileIfExists(filePath) {
 
 afterEach(function() {
     [
-        utils.defaultFile.path,
-        utils.filenameFile.path
+        vars.defaultFile.path,
+        vars.filenameFile.path
     ].forEach(function(filePath) {
         unlinkFileIfExists(filePath);
     })
@@ -25,13 +26,13 @@ afterEach(function() {
 
 context('without any options specified', function() {
     it('should show the default behaviour', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist())
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.defaultFile.path, file.path);
-            assert.deepEqual(utils.defaultContents, file.contents);
+            assert.deepEqual(vars.defaultFile.path, file.path);
+            assert.deepEqual(vars.defaultContents, file.contents);
             done();
         });
     });
@@ -39,78 +40,78 @@ context('without any options specified', function() {
 
 context('with options specified', function() {
     it('should use the supplied file name', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist({
-                outputFileName: utils.customFileName
+                outputFileName: vars.customFileName
             }))
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.filenameFile.path, file.path);
+            assert.deepEqual(vars.filenameFile.path, file.path);
             done();
         });
     });
 
     it('should use the supplied separator', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist({
                 separator: ',\n\t'
             }))
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.separatorContents, file.contents);
+            assert.deepEqual(vars.separatorContents, file.contents);
             done();
         });
     });
 
     it('should add the prepend string', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist({
                 prepend: 'var a = ['
             }))
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.prependContents, file.contents);
+            assert.deepEqual(vars.prependContents, file.contents);
             done();
         });
     });
 
     it('should surround the names with single quotes', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist({
                 quotesSingle: true
             }))
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.quoteSingleContents, file.contents);
+            assert.deepEqual(vars.quoteSingleContents, file.contents);
             done();
         });
     });
 
     it('should surround the names with double quotes', function(done) {
-        var stream = gulp.src(utils.source)
+        var stream = gulp.src(vars.source)
             .pipe(filenamelist({
                 quotesDouble: true
             }))
-            .pipe(gulp.dest(utils.destination));
+            .pipe(gulp.dest(vars.destination));
 
         stream.on('data', function(file) {
-            assert.deepEqual(utils.quoteDoubleContents, file.contents);
+            assert.deepEqual(vars.quoteDoubleContents, file.contents);
             done();
         });
     });
 
     it('should not accept both single and double quotes', function(done) {
         try {
-            gulp.src(utils.source)
+            gulp.src(vars.source)
                 .pipe(filenamelist({
                     quotesSingle: true,
                     quotesDouble: true
                 }))
-                .pipe(gulp.dest(utils.destination));
+                .pipe(gulp.dest(vars.destination));
             done(new Error('Did not catch any errors.'));
         } catch (err) {
             if (err.message !== 'Cannot have both single and double quotes.') {

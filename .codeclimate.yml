@@ -11,6 +11,9 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "main.js"
+  - "*.js"
 exclude_paths:
-- test/
+  - test/
+  - "LICENSE"
+  - "README.md"
+  - "package.json"

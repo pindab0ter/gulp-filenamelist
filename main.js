@@ -1,32 +1,18 @@
 'use strict';
 
 var through = require('through2'),
-    path = require('path'),
-    File = require('gulp-util').File,
-    PluginError = require('gulp-util').PluginError;
-
-var PLUGIN_NAME = 'gulp-filenamelist';
+    utils = require('./utils'),
+    File = require('gulp-util').File;
 
 module.exports = function(options) {
     var list = [];
 
-    options = options || {};
-    options.outputFileName = options.outputFileName || 'filenamelist.csv';
-    options.separator = options.separator || ',';
-    options.prepend = options.prepend || '';
-    options.append = options.append || '';
-    options.quotesSingle = options.quotesSingle || false;
-    options.quotesDouble = options.quotesDouble || false;
+    options = utils.verifyOptions(options);
 
-    if (options.quotesSingle && options.quotesDouble) {
-        throw new PluginError(
-            PLUGIN_NAME,
-            'Cannot have both single and double quotes.'
-        );
-    }
-
+    // Called for each incoming file
     //noinspection JSUnusedLocalSymbols
     function addToList(file, encoding, callback) {
+        // Transform to Vinyl to access .basename
         file = new File(file);
 
         list.push(file.basename);
@@ -34,29 +20,27 @@ module.exports = function(options) {
         callback();
     }
 
+    // Called after all files have been passed
     function writeFile(callback) {
+        var contents, file;
+
+        // Add quotes
         if (options.quotesSingle) {
-            list = list.map(function(item) {
-                return "'" + item + "'";
-            })
-        }
-        if (options.quotesDouble) {
-            list = list.map(function(item) {
-                return '"' + item + '"';
-            })
+            list = utils.surroundWithQuotes("'", list);
+        } else if (options.quotesDouble) {
+            list = utils.surroundWithQuotes('"', list);
         }
 
-        var contents = list.join(options.separator);
+        // Join list with separator
+        contents = list.join(options.separator);
 
+        // Add prepend and append
         contents = options.prepend + contents + options.append;
 
-        var file = new File({
-            cwd: __dirname,
-            base: __dirname,
-            path: path.join(__dirname, options.outputFileName),
-            contents: new Buffer(contents)
-        });
+        // Create a Vinyl file
+        file = utils.createFile(options, contents);
 
+        // Pass the Vinyl file on
         this.push(file);
         callback();
     }
