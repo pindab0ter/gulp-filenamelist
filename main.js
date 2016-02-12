@@ -26,9 +26,9 @@ module.exports = function(options) {
 
         // Add quotes
         if (options.quotesSingle) {
-            list = utils.surroundWithQuotes("'", list);
+            list = utils.surroundWithQuotes(list, "'");
         } else if (options.quotesDouble) {
-            list = utils.surroundWithQuotes('"', list);
+            list = utils.surroundWithQuotes(list, '"');
         }
 
         // Join list with separator
@@ -38,7 +38,7 @@ module.exports = function(options) {
         contents = options.prepend + contents + options.append;
 
         // Create a Vinyl file
-        file = utils.createFile(options, contents);
+        file = utils.createFile(contents, options);
 
         // Pass the Vinyl file on
         this.push(file);

@@ -19,12 +19,12 @@ module.exports = {
         }
         return options;
     },
-    surroundWithQuotes: function(quote, list) {
+    surroundWithQuotes: function(list, quote) {
        return list.map(function(item) {
                 return quote + item + quote;
         });
     },
-    createFile: function(options, contents) {
+    createFile: function(contents, options) {
         return new File({
             cwd: __dirname,
             base: __dirname,
