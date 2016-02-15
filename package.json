@@ -1,38 +1,43 @@
 {
-  "name": "gulp-filenamelist",
-  "version": "1.0.2",
-  "description": "Creates a file containing a list of filenames",
-  "homepage": "https://github.com/pindab0ter/gulp-filenamelist#readme",
-  "author": "Hans van Luttikhuizen <hansvanluttikhuizen@me.com>",
-  "license": "MIT",
-  "keywords": [
-    "gulpplugin"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pindab0ter/gulp-filenamelist.git"
-  },
-  "bugs": {
-    "url": "https://github.com/pindab0ter/gulp-filenamelist/issues"
-  },
-  "main": "main.js",
-  "scripts": {
-    "test": "mocha",
-    "posttest": "npm run coverage",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=9190d28d150e95535f47511124ddcf9328864c2114807b5b70ce286fbf8b53d8 codeclimate-test-reporter < coverage/lcov.info"
-  },
-  "engines": {
-    "node": ">= 0.10"
-  },
-  "dependencies": {
-    "gulp-util": "^3.0.7",
-    "through2": "^2.0.1"
-  },
-  "devDependencies": {
-    "codeclimate-test-reporter": "^0.3.1",
-    "gulp": "^3.9.1",
-    "istanbul": "^0.4.2",
-    "mocha": "^2.4.5"
-  }
+    "name": "gulp-filenamelist",
+    "version": "1.0.2",
+    "description": "Creates a file containing a list of filenames",
+    "homepage": "https://github.com/pindab0ter/gulp-filenamelist#readme",
+    "author": "Hans van Luttikhuizen <hansvanluttikhuizen@me.com>",
+    "license": "MIT",
+    "keywords": [
+        "gulpplugin"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pindab0ter/gulp-filenamelist.git"
+    },
+    "bugs": {
+        "url": "https://github.com/pindab0ter/gulp-filenamelist/issues"
+    },
+    "main": "main.js",
+    "scripts": {
+        "test": "mocha -R mocha-sonar-reporter",
+        "posttest": "npm run coverage",
+        "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
+    },
+    "config": {
+        "mocha-sonar-reporter": {
+            "outputfile": "test/report.xml"
+        }
+    },
+    "engines": {
+        "node": ">= 0.10"
+    },
+    "dependencies": {
+        "gulp-util": "^3.0.7",
+        "through2": "^2.0.1"
+    },
+    "devDependencies": {
+        "codeclimate-test-reporter": "^0.3.1",
+        "gulp": "^3.9.1",
+        "istanbul": "^0.4.2",
+        "mocha": "^2.4.5",
+        "mocha-sonar-reporter": "^0.1.4"
+    }
 }
