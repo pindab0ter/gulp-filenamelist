@@ -1,0 +1,6 @@
+reporting:
+    reports:
+        - lcovonly
+    dir: ./reports
+    report-config:
+        lcovonly: {file: coverage.info}

@@ -17,8 +17,10 @@
     },
     "main": "main.js",
     "scripts": {
-        "test": "mocha --recursive -R xunit test/ > test/report.xml",
-        "posttest": "npm run coverage",
+        "test": "npm run sonarreport && npm run xunitreport",
+        "sonarreport": "mocha -R mocha-sonar-generic-test-coverage test > reports/tests-sonar.xml",
+        "xunitreport": "mocha -R xunit test > reports/tests-xunit.xml",
+        "pretest": "npm run coverage",
         "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
     },
     "engines": {
@@ -29,10 +31,9 @@
         "through2": "^2.0.1"
     },
     "devDependencies": {
-        "codeclimate-test-reporter": "^0.3.1",
         "gulp": "^3.9.1",
         "istanbul": "^0.4.2",
         "mocha": "^2.4.5",
-        "mocha-sonar-reporter": "^0.1.4"
+        "mocha-sonar-generic-test-coverage": "0.0.1"
     }
 }

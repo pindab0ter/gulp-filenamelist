@@ -1,6 +1,7 @@
 .idea/
+.sonar/
 /node_modules
-/coverage
+/reports
 /npm-debug.log
 /test/destination/*
 /test/*.xml
