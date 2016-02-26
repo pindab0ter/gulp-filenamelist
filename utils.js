@@ -10,7 +10,7 @@ module.exports = {
         options.separator = options.separator || ',';
         options.prepend = options.prepend || '';
         options.append = options.append || '';
-
+        options.includeRelativePath = options.includeRelativePath || false;
         if (options.quotesSingle && options.quotesDouble) {
             throw new PluginError(
                 PLUGIN_NAME,
