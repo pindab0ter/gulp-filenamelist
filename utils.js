@@ -7,10 +7,11 @@ module.exports = {
     verifyOptions: function(options) {
         options = options || {};
         options.outputFileName = options.outputFileName || 'filenamelist.csv';
+        options.includeRelativePath = options.includeRelativePath || false;
         options.separator = options.separator || ',';
         options.prepend = options.prepend || '';
         options.append = options.append || '';
-        options.includeRelativePath = options.includeRelativePath || false;
+
         if (options.quotesSingle && options.quotesDouble) {
             throw new PluginError(
                 PLUGIN_NAME,

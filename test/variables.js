@@ -11,10 +11,10 @@ variables.defaultFileName = 'filenamelist.csv';
 variables.customFileName = 'custom.txt';
 variables.defaultContents = new Buffer('a.txt,b.txt');
 variables.separatorContents = new Buffer('a.txt,\n\tb.txt');
-variables.prependContents = new Buffer('var a = [a.txt,b.txt');
-variables.appendContents = new Buffer('a.txt,b.txt];');
 variables.quoteSingleContents = new Buffer("'a.txt','b.txt'");
 variables.quoteDoubleContents = new Buffer('"a.txt","b.txt"');
+variables.prependContents = new Buffer('var a = [a.txt,b.txt');
+variables.appendContents = new Buffer('a.txt,b.txt];');
 variables.relativePathContents = new Buffer(
     "test" + path.sep + "source" + path.sep + "a.txt,test" + path.sep +
     "source" + path.sep + "b.txt"

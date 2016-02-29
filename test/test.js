@@ -83,19 +83,6 @@ context('with options specified', function() {
         });
     });
 
-    it('should add the prepend string', function(done) {
-        var stream = gulp.src(vars.source)
-            .pipe(filenamelist({
-                prepend: 'var a = ['
-            }))
-            .pipe(gulp.dest(vars.destination));
-
-        stream.on('data', function(file) {
-            assert.deepEqual(vars.prependContents, file.contents);
-            done();
-        });
-    });
-
     it('should surround the names with single quotes', function(done) {
         var stream = gulp.src(vars.source)
             .pipe(filenamelist({
@@ -137,5 +124,18 @@ context('with options specified', function() {
             }
             done();
         }
+    });
+
+    it('should add the prepend string', function(done) {
+        var stream = gulp.src(vars.source)
+            .pipe(filenamelist({
+                prepend: 'var a = ['
+            }))
+            .pipe(gulp.dest(vars.destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(vars.prependContents, file.contents);
+            done();
+        });
     });
 });
