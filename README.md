@@ -96,33 +96,33 @@ example above.
 
 Use the specified filename for the output file.
 
-Type: `string`
+Type: `string`  
 Default: `filenamelist.csv`
 
 ## includeRelativePath
 
 Include relative path from the project root with the filename.
 
-Type: `boolean`
+Type: `boolean`  
 Default: `false`
 
 ## separator
 
-Type: `string`
+Type: `string`  
 default: `','`
 
 Add this string to the end of each filename except the last.
 
 ## quotesSingle
 
-Type: `boolean`
+Type: `boolean`  
 default: `false`
 
 Surround each filename with single quotes: `'`
 
 ## quotesDouble
 
-Type: `boolean`
+Type: `boolean`  
 default: `false`
 
 Surround each filename with double quotes: `"`
@@ -131,12 +131,12 @@ Surround each filename with double quotes: `"`
 
 Add this string before the list of names.
 
-Type: `string`
+Type: `string`  
 default: `''`
 
 ## append
 
-Type: `string`
+Type: `string`  
 default: `''`
 
 Add this string at the end of the list of names.
