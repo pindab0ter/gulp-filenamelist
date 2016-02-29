@@ -126,7 +126,20 @@ context('with options specified', function() {
         }
     });
 
-    it('should add the prepend string', function(done) {
+    it('should append the append string', function(done) {
+        var stream = gulp.src(vars.source)
+            .pipe(filenamelist({
+                append: '];'
+            }))
+            .pipe(gulp.dest(vars.destination));
+
+        stream.on('data', function(file) {
+            assert.deepEqual(vars.appendContents, file.contents);
+            done();
+        });
+    });
+
+    it('should prepend the prepend string', function(done) {
         var stream = gulp.src(vars.source)
             .pipe(filenamelist({
                 prepend: 'var a = ['
