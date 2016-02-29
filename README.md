@@ -99,19 +99,12 @@ Use the specified filename for the output file.
 Type: `string`
 Default: `filenamelist.csv`
 
-## prepend
+## includeRelativePath
 
-Add this string before the list of names.
+Include the path relative to the project root in the list item.
 
-Type: `string`
-default: `''`
-
-## append
-
-Type: `string`
-default: `''`
-
-Add this string at the end of the list of names.
+Type: `boolean`
+Default: `false`
 
 ## separator
 
@@ -133,6 +126,20 @@ Type: `boolean`
 default: `false`
 
 Surround each filename with double quotes: `"`
+
+## prepend
+
+Add this string before the list of names.
+
+Type: `string`
+default: `''`
+
+## append
+
+Type: `string`
+default: `''`
+
+Add this string at the end of the list of names.
 
 # License
 
