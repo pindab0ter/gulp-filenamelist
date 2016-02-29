@@ -15,9 +15,13 @@ variables.prependContents = new Buffer('var a = [a.txt,b.txt');
 variables.appendContents = new Buffer('a.txt,b.txt];');
 variables.quoteSingleContents = new Buffer("'a.txt','b.txt'");
 variables.quoteDoubleContents = new Buffer('"a.txt","b.txt"');
-variables.relativePathContents = new Buffer("test"+path.sep+"source"+path.sep+"a.txt,test"+path.sep+"source"+path.sep+"b.txt");
-
-variables.defaultPath = path.join(variables.destination, variables.defaultFileName);
+variables.relativePathContents = new Buffer(
+    "test" + path.sep + "source" + path.sep + "a.txt,test" + path.sep +
+    "source" + path.sep + "b.txt"
+);
+variables.defaultPath = path.join(
+    variables.destination, variables.defaultFileName
+);
 variables.defaultFile = new File({
     path: variables.defaultPath,
     contents: variables.defaultContents

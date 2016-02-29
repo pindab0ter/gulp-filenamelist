@@ -20,8 +20,8 @@ module.exports = {
         return options;
     },
     surroundWithQuotes: function(list, quote) {
-       return list.map(function(item) {
-                return quote + item + quote;
+        return list.map(function(item) {
+            return quote + item + quote;
         });
     },
     createFile: function(contents, options) {

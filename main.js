@@ -15,7 +15,12 @@ module.exports = function(options) {
         // Transform to Vinyl to access .basename
         file = new File(file);
 
-        list.push(options.includeRelativePath?file.relative:file.basename);
+        if (options.includeRelativePath) {
+            list.push(file.relative);
+        } else {
+            list.push(file.basename);
+        }
+
         callback();
     }
 
