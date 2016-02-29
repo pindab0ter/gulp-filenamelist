@@ -52,6 +52,19 @@ context('with options specified', function() {
         });
     });
 
+  it('shoud use relative path',function (done){
+        var stream = gulp.src(vars.source,{base:'./'})
+            .pipe(filenamelist({
+                includeRelativePath : true
+            }))
+            .pipe(gulp.dest(vars.destination));
+        stream.on('data', function(file) {
+            assert.deepEqual(vars.relativePathContents.toString(),file.contents.toString());
+            done();
+        });
+
+      });
+
     it('should use the supplied separator', function(done) {
         var stream = gulp.src(vars.source)
             .pipe(filenamelist({
@@ -78,6 +91,7 @@ context('with options specified', function() {
         });
     });
 
+  
     it('should surround the names with single quotes', function(done) {
         var stream = gulp.src(vars.source)
             .pipe(filenamelist({
