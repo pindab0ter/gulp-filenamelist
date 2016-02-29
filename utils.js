@@ -9,6 +9,8 @@ module.exports = {
         options.outputFileName = options.outputFileName || 'filenamelist.csv';
         options.includeRelativePath = options.includeRelativePath || false;
         options.separator = options.separator || ',';
+        options.quotesSingle = options.quotesSingle || false;
+        options.quotesDouble = options.quotesDouble || false;
         options.prepend = options.prepend || '';
         options.append = options.append || '';
 
