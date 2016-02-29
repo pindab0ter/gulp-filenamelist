@@ -101,7 +101,7 @@ Default: `filenamelist.csv`
 
 ## includeRelativePath
 
-Include the path relative to the project root in the list item.
+Include relative path from the project root with the filename.
 
 Type: `boolean`
 Default: `false`
